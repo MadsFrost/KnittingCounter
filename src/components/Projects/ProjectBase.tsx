@@ -17,29 +17,39 @@ const ProjectBase: React.FC<ProjectBaseProps>= (props) => {
     const [askDelete, setAskDelete] = React.useState(false);
     const imageClass = `flex justify-center items-center flex-col bg-pink-300 w-full h-[200px] bg-cover`;
 
-    const goToProject = () => {
+    const goToBigProject = () => {
         navigate(`/${id}`)
     }
-    const confirmDelete = () => {
+    const goToProject = (e: React.MouseEvent<SVGElement | HTMLDivElement>) => {
+        e.stopPropagation();
+        navigate(`/${id}`)
+    }
+    const confirmDelete = (e: React.MouseEvent<SVGElement>) => {
+        e.stopPropagation();
         setAskDelete(false);
         handleDelete(id);
     }
 
-    const cancelDelete = () => {
+    const cancelDelete = (e: React.MouseEvent<SVGElement>) => {
+        e.stopPropagation();
         setAskDelete(false);
     }
 
-    const onDelete = () => {
+    const onDelete = (e: React.MouseEvent<SVGElement>) => {
+        e.stopPropagation();
         setAskDelete(true);
     }
 
-    const onEdit = () => {
+    const onEdit = (e: React.MouseEvent<SVGElement>) => {
+        e.stopPropagation();
         handleEdit(id);
     }
     return (
         <div style={{
             backgroundImage: `url('${image}')`
-        }} className={imageClass}>
+        }}
+        onClick={goToBigProject} 
+        className={imageClass}>
 
             <div className=' 
             bg-black
@@ -54,19 +64,20 @@ const ProjectBase: React.FC<ProjectBaseProps>= (props) => {
             text-xl
             text-white 
             margin-0
+            z-0
             '>
                 {name}
-                <div className='relative top-10 flex flex-row'>
+                <div className='relative top-10 flex flex-row z-10'>
                     {askDelete ? <>
                         <div className='flex flex-row'>
-                        <FcOk onClick={confirmDelete} size='25px' className='mx-2 fill-white'  />
-                        <FcCancel onClick={cancelDelete} size='25px' className='mx-2 fill-white'  />
+                        <FcOk onClick={(e) => confirmDelete(e)} size='25px' className='mx-2 fill-white'  />
+                        <FcCancel onClick={(e) => cancelDelete(e)} size='25px' className='mx-2 fill-white'  />
                       </div>
                     </>
                     : <>
-                        <AiFillBook onClick={goToProject} className='mt-[3px] fill-white' />
-                        <AiFillDelete onClick={onDelete} size='25px' className='mx-2 fill-white' />
-                        <AiFillEdit onClick={onEdit} size='25px' className='fill-white' /> 
+                        <AiFillBook onClick={(e) => goToProject(e)} className='mt-[3px] fill-white z-100' />
+                        <AiFillDelete onClick={(e) => onDelete(e)} size='25px' className='mx-2 fill-white z-100' />
+                        <AiFillEdit onClick={(e) => onEdit(e)} size='25px' className='fill-white z-100' /> 
                     </>}
                 </div>
             </div>
