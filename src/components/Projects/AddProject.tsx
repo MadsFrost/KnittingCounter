@@ -40,7 +40,7 @@ const AddProject = () => {
     const handleAddProject = () => {
         const newProject = {
             date: new Date().toDateString(),
-            id: internalProjects.length + 1,
+            id: internalProjects?.length + 1,
             knitCounters: [],
             name: values.name,
             description: values.description ?? 'Ingen beskrivelse.',
@@ -58,10 +58,6 @@ const AddProject = () => {
 
     const handleChangeDesc = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({...values, description: event.currentTarget.value})
-    }
-
-    const handleChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({...values, image: event.currentTarget.value})
     }
 
     React.useEffect(() => {
@@ -86,7 +82,7 @@ const AddProject = () => {
                     Nyt projekt?
             </button>}
             {active && 
-            <div className='text-white rounded-sm md:max-w-[500px]'>
+            <div className='text-white rounded-sm w-full'>
                 <div className='my-2'>
                     <label htmlFor="projectName" className="block mb-2 text-lg font-medium text-white">*Navn:</label>
                     <input onChange={handleChangeName} value={values?.name} type="text" id="name" className="text-pink-600 text-md focus:outline-none text-sm font-medium block w-full p-2.5 placeholder-pink-400" placeholder="Navn.." required />
@@ -95,7 +91,6 @@ const AddProject = () => {
                     <label htmlFor="projectDescription" className="block mb-2 text-lg font-medium text-white">Beskrivelse:</label>
                     <input onChange={handleChangeDesc} value={values?.description} type="text" id="name" className="text-pink-600 text-md focus:outline-none text-sm font-medium block w-full p-2.5 placeholder-pink-400" placeholder="Beskrivelse.." required />
                 </div>
-                {!image[0]?.dataURL ? <ImageUpload image={image} onChange={onChangeImage}/> : <img src={image[0].dataURL} />}
                 <div>
                     <button 
                         className='mr-4 my-2 bg-pink-500 hover:bg-pink-600 text-white py-2 px-8 rounded font-medium text-lg'

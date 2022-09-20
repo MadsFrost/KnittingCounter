@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { KnitProject, KnitCounter } from '../types';
-import { LocalStorage, LocalKey } from "ts-localstorage";
-
+import Cookies from 'universal-cookie';
 interface KnitProjectCounter {
   knitProject: KnitProject;
   knitCounter: KnitCounter;
@@ -11,13 +10,13 @@ interface KnitProjectCounter {
 interface KnitProjectState {
   projects: KnitProject[];
 }
-
+ 
+const cookies = new Cookies();
 const initLocalStorage = () => {
   localStorage.setItem('projects', JSON.stringify({ projects: []}))
 }
 
 const setLocalStorage = (projects: KnitProject[]) => {
-  localStorage.clear();
   localStorage.setItem('projects', JSON.stringify({ projects: projects }))
 }
 

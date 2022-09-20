@@ -16,9 +16,9 @@ const Projects = () => {
         alert('Editing');
     }
     return (
-        <div className='grid grid-cols-2 gap-8'>
+        <div className='grid grid-cols-1 gap-8'>
             <AddProject />
-            {projects.map((project, idx) => {
+            {projects?.map((project, idx) => {
                 return <ProjectBase
                     handleEdit={handleEdit}
                     handleDelete={handleDelete}

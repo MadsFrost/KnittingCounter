@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { KnitProject, KnitCounter } from '../../types';
-import { addKnitCounterToProject, updateKnitCounterInProject } from '../../features/KnitProject';
+import { addKnitCounterToProject, updateKnitCounterInProject, deleteKnitCounterFromProject } from '../../features/KnitProject';
 import CounterWrapper from './CounterWrapper';
 import Counter from './Counter';
 import AddCounterModal from './AddCounterModal';
@@ -53,6 +53,13 @@ const ProjectViewer = () => {
             knitProject: project
         }))
     }
+
+    const onDelete = (counter: KnitCounter) => {
+        project !== undefined && dispatch(deleteKnitCounterFromProject({
+            knitCounter: counter,
+            knitProject: project
+        }))
+    }
     return (
         <div className='bg-pink-300 w-full h-full flex flex-col'>
             <AddCounterModal confirmCreateCounter={confirmCreateCounter} closeModal={toggleModal} isOpen={modalOpen}/>
@@ -71,7 +78,7 @@ const ProjectViewer = () => {
             </div>
             <CounterWrapper>
                 {project?.knitCounters.map((counter, idx) => {
-                return <Counter onUpdate={onUpdateKnitCounter} knitCounter={counter} key={`${counter.id}-idx-${idx}`}/>
+                return <Counter onDelete={onDelete} onUpdate={onUpdateKnitCounter} knitCounter={counter} key={`${counter.id}-idx-${idx}`}/>
                 })}
             </CounterWrapper>
 
