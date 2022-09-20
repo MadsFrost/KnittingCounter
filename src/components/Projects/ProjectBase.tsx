@@ -18,7 +18,7 @@ const ProjectBase: React.FC<ProjectBaseProps>= (props) => {
     const imageClass = `flex justify-center items-center flex-col bg-pink-300 w-full h-[200px] bg-cover`;
 
     const goToProject = () => {
-        navigate(`/projects/${id}`)
+        navigate(`/${id}`)
     }
     const confirmDelete = () => {
         setAskDelete(false);

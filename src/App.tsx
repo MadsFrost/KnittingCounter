@@ -3,19 +3,21 @@ import Layout from './Layout';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Projects from './components/Projects';
 import ProjectViewer from './components/ProjectViewer';
+import Intro from './components/Intro';
+
 function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Layout><div>Hello world!</div></Layout>,
+      path: "/about",
+      element: <Layout><Intro /></Layout>,
     },
     { 
-      path: "/projects",
+      path: "/",
       element: <Layout><Projects /></Layout>
     },
     {
-      path: "/projects/:id",
+      path: "/:id",
       element: <Layout><ProjectViewer /></Layout>,
     }
   ]);

@@ -51,13 +51,13 @@ const Navigation = () => {
                     <ul className="flex flex-col bg-pink-300 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-large md:border-0 md:bg-pink-300">
                         <Link 
                             onClick={handleMenuToggle}
-                            to='/'
+                            to='/about'
                             className="my-1 block py-2 pr-4 pl-3 text-pink-500 hover:text-pink-100 font-medium hover:bg-pink-400 rounded md:bg-transparent md:text-pink-700 md:p-0" aria-current="page">
                             Hvordan virker det?
                         </Link>
                         <Link 
                             onClick={handleMenuToggle}
-                            to='/projects'
+                            to='/'
                             className="my-1 block py-2 pr-4 pl-3 text-pink-500 hover:text-pink-100 font-medium hover:bg-pink-400 rounded md:bg-transparent md:text-pink-700 md:p-0" aria-current="page">
                             Strikkeprosjekter
                         </Link>

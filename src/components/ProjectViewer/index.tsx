@@ -27,7 +27,7 @@ const ProjectViewer = () => {
     }, [allProjects])
 
     const goToProjects = () => {
-        navigate('/projects')
+        navigate('/')
     }
 
     const toggleModal = () => {
