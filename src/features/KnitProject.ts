@@ -65,6 +65,7 @@ export const knitProjectSlice = createSlice({
       if (foundProject !== undefined) {
         const filteredKnitCounters = action.payload.knitProject.knitCounters.filter((counter) => counter.id !== action.payload.knitCounter.id);
         state.projects = [...state.projects.filter((project) => project.id !== foundProject.id), { ...action.payload.knitProject, knitCounters: filteredKnitCounters }]
+        setLocalStorage([...state.projects.filter((project) => project.id !== foundProject.id), { ...action.payload.knitProject, knitCounters: filteredKnitCounters }])
       }
     },
     addKnitCounterToProject: (state, action: PayloadAction<KnitProjectCounter>) => {
